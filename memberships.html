@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memberships | Neo Gaiam</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portal-styles.css">
+    
+    
+    
+    <!-- Selector de idioma CSS -->
+    <style>
+        .language-selector {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 9999;
+        }
+        
+        .connected-planet-icon {
+            width: 50px;
+            height: 50px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj48ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9Imd1bG9iZSIgY3g9IjEwMCIgY3k9IjEwMCIgcj0iOTAiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMDQ3YWZlIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDIyYzg5Ii8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSI5MCIgZmlsbD0idXJsKCNnbG9iZSkiLz48cGF0aCBkPSJNNDAgNjBjMjAgLTEwIDQwIC0xMCA2MCAwYzIwIDEwIDQwIDEwIDYwIDBNMzUgMTAwYzIwIC0xMCA0NSAtMTEgNjUgLTFjMjAgMTAgNDUgMTAgNjUgME0zNSAxNDBjMjAgLTEwIDQ1IC0xMSA2NSAtMWMyMCAxMCA0NSAxMCA2NSAwIiBmaWxsPSJ0cmFuc3BhcmVudCIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNiIvPjxjaXJjbGUgY3g9IjQwIiBjeT0iNjAiIHI9IjIiIGZpbGw9IiNmZmYiLz48Y2lyY2xlIGN4PSI2MCIgY3k9IjUzIiByPSIzIiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iOTAiIGN5PSI1OCIgcj0iMiIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjEyMCIgY3k9IjU1IiByPSIzIiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMTU1IiBjeT0iNjIiIHI9IjIiIGZpbGw9IiNmZmYiLz48Y2lyY2xlIGN4PSIzNSIgY3k9IjEwMCIgcj0iMiIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjYwIiBjeT0iOTUiIHI9IjMiIGZpbGw9IiNmZmYiLz48Y2lyY2xlIGN4PSI5MCIgY3k9IjEwMCIgcj0iMiIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjEyMCIgY3k9Ijk3IiByPSIzIiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMTYwIiBjeT0iMTA0IiByPSIyIiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMzUiIGN5PSIxNDAiIHI9IjIiIGZpbGw9IiNmZmYiLz48Y2lyY2xlIGN4PSI2MCIgY3k9IjEzNSIgcj0iMyIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjkwIiBjeT0iMTQwIiByPSIyIiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMTIwIiBjeT0iMTM3IiByPSIzIiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMTYwIiBjeT0iMTQ0IiByPSIyIiBmaWxsPSIjZmZmIi8+PC9zdmc+');
+            background-size: contain;
+            border-radius: 50%;
+            box-shadow: 0 0 12px rgba(100, 200, 255, 0.6);
+            animation: pulse 3s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 12px rgba(100, 200, 255, 0.6);
+            }
+            100% {
+                box-shadow: 0 0 18px rgba(100, 255, 255, 0.8);
+            }
+        }
+        
+        .connected-planet-icon:hover {
+            transform: rotate(15deg) scale(1.1);
+        }
+        
+        .connected-planet-icon::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 50%);
+        }
+        
+        .current-lang-indicator {
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #212121;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+            color: #fff;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+        }
+        
+        .language-dropdown {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: rgba(20, 20, 35, 0.95);
+            border-radius: 10px;
+            padding: 10px;
+            display: none;
+            flex-direction: column;
+            min-width: 170px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform-origin: top right;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .language-option {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 6px;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            border: 1px solid transparent;
+        }
+        
+        .language-option:last-child {
+            margin-bottom: 0;
+        }
+        
+        .language-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateX(-2px);
+        }
+        
+        .language-option.active {
+            background: #C9AC48;
+            color: #000;
+            font-weight: 600;
+        }
+        
+        .flag-icon {
+            width: 26px;
+            height: 18px;
+            margin-right: 12px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 3px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            flex-shrink: 0;
+        }
+        
+        .flag-en {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjM1IDY1MCIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPg0KPGRlZnM+DQo8ZyBpZD0idW5pb24iPg0KPHVzZSB5PSItLjIxNiIgeGxpbms6aHJlZj0iI3g0Ii8+DQo8dXNlIHhsaW5rOmhyZWY9IiN4NCIvPg0KPHVzZSB5PSIuMjE2IiB4bGluazpocmVmPSIjczYiLz4NCjwvZz4NCjxnIGlkPSJ4NCI+DQo8dXNlIHhsaW5rOmhyZWY9IiNzNiIvPg0KPHVzZSB5PSIuMDU0IiB4bGluazpocmVmPSIjczUiLz4NCjx1c2UgeT0iLjEwOCIgeGxpbms6aHJlZj0iI3M2Ii8+DQo8dXNlIHk9Ii4xNjIiIHhsaW5rOmhyZWY9IiNzNSIvPg0KPC9nPg0KPGcgaWQ9InM1Ij4NCjx1c2UgeD0iLS4yNTIiIHhsaW5rOmhyZWY9IiNzdGFyIi8+DQo8dXNlIHg9Ii0uMTI2IiB4bGluazpocmVmPSIjc3RhciIvPg0KPHVzZSB4bGluazpocmVmPSIjc3RhciIvPg0KPHVzZSB4PSIuMTI2IiB4bGluazpocmVmPSIjc3RhciIvPg0KPHVzZSB4PSIuMjUyIiB4bGluazpocmVmPSIjc3RhciIvPg0KPC9nPg0KPGcgaWQ9InM2Ij4NCjx1c2UgeD0iLS4wNjMiIHhsaW5rOmhyZWY9IiNzNSIvPg0KPHVzZSB4PSIuMzE1IiB4bGluazpocmVmPSIjc3RhciIvPg0KPC9nPg0KPGcgaWQ9InN0YXIiPg0KPHVzZSB4bGluazpocmVmPSIjcHQiIHRyYW5zZm9ybT0ibWF0cml4KC0uODA5IC0uNTg4IC41ODggLS44MDkgMCAwKSIvPg0KPHVzZSB4bGluazpocmVmPSIjcHQiIHRyYW5zZm9ybT0ibWF0cml4KC0uMzA5IC0uOTUxIC45NTEgLS4zMDkgMCAwKSIvPg0KPHVzZSB4bGluazpocmVmPSIjcHQiLz4NCjx1c2UgeGxpbms6aHJlZj0iI3B0IiB0cmFuc2Zvcm09Im1hdHJpeCguMzA5IC0uOTUxIC45NTEgLjMwOSAwIDApIi8+DQo8dXNlIHhsaW5rOmhyZWY9IiNwdCIgdHJhbnNmb3JtPSJtYXRyaXgoLjgwOSAtLjU4OCAuNTg4IC44MDkgMCAwKSIvPg0KPC9nPg0KPHBhdGggZmlsbD0iI2ZmZiIgaWQ9InB0IiBkPSJNMCwtMVYxSC41IiB0cmFuc2Zvcm09InJvdGF0ZSgzNiAwLDApIi8+DQo8L2RlZnM+DQo8cGF0aCBmaWxsPSIjMDAwMDVlIiBkPSJtMCwwaDEyMzV2NjUwSDB6Ii8+DQo8ZyBmaWxsPSIjZmZmIj4NCjxwYXRoIGQ9Im0wLDBoMTIzNXY1MEgweiIvPg0KPHBhdGggZD0ibTAsMTAwaDEyMzV2NTBIMHoiLz4NCjxwYXRoIGQ9Im0wLDIwMGgxMjM1djUwSDB6Ii8+DQo8cGF0aCBkPSJtMCwzMDBoMTIzNXY1MEgweiIvPg0KPHBhdGggZD0ibTAsNDAwaDEyMzV2NTBIMHoiLz4NCjxwYXRoIGQ9Im0wLDUwMGgxMjM1djUwSDB6Ii8+DQo8cGF0aCBkPSJtMCw2MDBoMTIzNXY1MEgweiIvPg0KPC9nPg0KPHBhdGggZmlsbD0iI2NmMTQyYiIgZD0ibTAsMGg0OTR2MzUwSDB6Ii8+DQo8ZyBmaWxsPSIjZmZmIiB0cmFuc2Zvcm09Im1hdHJpeCg2NTAgMCAwIDY1MCAyNDcgMTc1KSI+DQo8dXNlIHhsaW5rOmhyZWY9IiN1bmlvbiIvPg0KPC9nPg0KPC9zdmc+');
+        }
+        
+        .flag-es {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3NTAgNTAwIj4NCjxwYXRoIGZpbGw9IiNjNjBiMWUiIGQ9Im0wLDBoNzUwdjUwMEgweiIvPg0KPHBhdGggZmlsbD0iI2ZmYzQwMCIgZD0ibTAsMTI1aDc1MHYyNTBIMHoiLz4NCjwvc3ZnPg==');
+        }
+        
+        .flag-it {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNTAgMTAwIj4NCjxwYXRoIGZpbGw9IiMwMDk1NDYiIGQ9Im0wLDBoNTB2MTAwSDB6Ii8+DQo8cGF0aCBmaWxsPSIjZmZmIiBkPSJtNTAsMGg1MHYxMDBINTB6Ii8+DQo8cGF0aCBmaWxsPSIjY2UyYjM3IiBkPSJtMTAwLDBoNTB2MTAwSDEwMHoiLz4NCjwvc3ZnPg==');
+        }
+        
+        .flag-pt {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgNDAwIj4NCjxwYXRoIGZpbGw9IiMwNTZiMTAiIGQ9Im0wLDBoNjAwdjQwMEgweiIvPg0KPHBhdGggZmlsbD0iI2RmMDEwMCIgZD0ibTAsMGgyNDB2NDAwSDB6Ii8+DQo8L3N2Zz4=');
+        }
+        
+        .flag-de {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1IDMiPg0KPHBhdGggZD0ibTAsMGg1djFIMHoiLz4NCjxwYXRoIGZpbGw9IiNkMDAiIGQ9Im0wLDFoNXYxSDB6Ii8+DQo8cGF0aCBmaWxsPSIjZmZjZTAwIiBkPSJtMCwyaDV2MUgweiIvPg0KPC9zdmc+');
+        }
+    </style>
+    
+    
+</head>
+<body class="">
+    <!-- Overlay de transición entre páginas -->
+    <div class="page-transition-overlay">
+        <div class="transition-content">
+            <p class="greek-text">μετὰ τὸ νέἕν</p>
+            <div class="sacred-geometry-container">
+                <div class="flower-of-life">
+                    <img src="/static/images/flower_of_life_enhanced.svg" alt="Flower of Life">
+                </div>
+                <div class="metatron-cube">
+                    <img src="/static/images/metatron_cube_enhanced.svg" alt="Metatron's Cube">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Selector de idioma -->
+    <div class="language-selector">
+        <div class="connected-planet-icon" id="language-toggle">
+            <div class="current-lang-indicator">
+                en
+            </div>
+        </div>
+        <div class="language-dropdown" id="language-menu">
+            <a href="/set-language/en" class="language-option active">
+                <div class="flag-icon flag-en"></div>
+                <span>English</span>
+            </a>
+            <a href="/set-language/es" class="language-option ">
+                <div class="flag-icon flag-es"></div>
+                <span>Español</span>
+            </a>
+            <a href="/set-language/it" class="language-option ">
+                <div class="flag-icon flag-it"></div>
+                <span>Italiano</span>
+            </a>
+            <a href="/set-language/pt" class="language-option ">
+                <div class="flag-icon flag-pt"></div>
+                <span>Português</span>
+            </a>
+            <a href="/set-language/de" class="language-option ">
+                <div class="flag-icon flag-de"></div>
+                <span>Deutsch</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="cosmic-background">
+        <div class="stars"></div>
+        <div class="constellations"></div>
+    </div>
+
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <h1>METATONEHEN</h1>
+                    <p class="greek-text">μετὰ τὸ νέἕν</p>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">
+                                Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/courses">
+                                Courses
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/sessions">
+                                1-on-1 Sessions
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/group-sessions">
+                                Group Sessions
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/memberships">
+                                Memberships
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="calculatorsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Calculators
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="calculatorsDropdown">
+                                <li><a class="dropdown-item" href="/natal-chart">
+                                    Natal Chart
+                                </a></li>
+                                <li><a class="dropdown-item" href="/human-design">
+                                    Human Design
+                                </a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/blog">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/about">
+                                About
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/contact">
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        
+<section class="page-header">
+    <div class="container">
+        <h1>Membership Options</h1>
+        <p>Join our cosmic community and accelerate your spiritual journey</p>
+    </div>
+</section>
+
+<section class="cube-portal-section">
+    <div class="container">
+        <div class="sacred-geometry-container" style="position: relative; margin-bottom: 40px;">
+            <div class="flower-of-life" style="position: absolute; max-width: 350px; left: 50%; transform: translateX(-50%);">
+                <img src="/static/images/flower_of_life_enhanced.svg" alt="Flower of Life">
+            </div>
+            <div class="metatron-cube" style="position: relative; z-index: 2; max-width: 300px; margin: 0 auto;">
+                <img src="/static/images/metatron_cube_enhanced.svg" alt="Metatron's Cube">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="memberships-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="membership-card platinum">
+                    <div class="membership-header">
+                        <h2>Platinum</h2>
+                        <div class="price">
+                            <span class="amount">$29.99</span>
+                            <span class="period">/ month</span>
+                        </div>
+                    </div>
+                    <div class="membership-content">
+                        <div class="benefits">
+                            <h3>Membership Benefits</h3>
+                            <ul>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>15% discount on all 1-on-1 sessions</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>10% discount on all courses</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Access to recorded group meditations library</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Monthly live group meditation (value: $25)</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Early registration for retreats</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Access to member-only community forum</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Monthly cosmic calendar and energy forecast</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <a href="#" class="btn btn-primary btn-lg">Join Platinum</a>
+                        <p class="cancel-note">Cancel anytime. No long-term commitment required.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="membership-card electrum premium">
+                    <div class="premium-badge">Premium</div>
+                    <div class="membership-header">
+                        <h2>Electrum</h2>
+                        <div class="price">
+                            <span class="amount">$49.99</span>
+                            <span class="period">/ month</span>
+                        </div>
+                    </div>
+                    <div class="membership-content">
+                        <div class="benefits">
+                            <h3>Membership Benefits</h3>
+                            <ul>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>25% discount on all 1-on-1 sessions</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>20% discount on all courses</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Full access to meditation and workshop library</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>All monthly live events included for free</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>One free 30-minute 1-on-1 session monthly</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Priority booking for retreats with 15% discount</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Exclusive monthly masterclass on advanced topics</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Personal cosmic calendar with transit notifications</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Quarterly virtual retreat day</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <a href="#" class="btn btn-primary btn-lg">Join Electrum</a>
+                        <p class="cancel-note">Cancel anytime. No long-term commitment required.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="membership-comparison">
+    <div class="container">
+        <h2>Membership Comparison</h2>
+        <div class="table-responsive">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Platinum</th>
+                        <th>Electrum</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Monthly Cost</td>
+                        <td>$29.99</td>
+                        <td>$49.99</td>
+                    </tr>
+                    <tr>
+                        <td>1-on-1 Session Discount</td>
+                        <td>15%</td>
+                        <td>25%</td>
+                    </tr>
+                    <tr>
+                        <td>Course Discount</td>
+                        <td>10%</td>
+                        <td>20%</td>
+                    </tr>
+                    <tr>
+                        <td>Meditation Library</td>
+                        <td><i class="fas fa-check"></i></td>
+                        <td><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td>Workshop Library</td>
+                        <td>Limited Access</td>
+                        <td>Full Access</td>
+                    </tr>
+                    <tr>
+                        <td>Monthly Live Events</td>
+                        <td>1 Free Event</td>
+                        <td>All Free</td>
+                    </tr>
+                    <tr>
+                        <td>Free 1-on-1 Session</td>
+                        <td>—</td>
+                        <td>1 × 30 min Monthly</td>
+                    </tr>
+                    <tr>
+                        <td>Retreat Discount</td>
+                        <td>10%</td>
+                        <td>15%</td>
+                    </tr>
+                    <tr>
+                        <td>Exclusive Masterclasses</td>
+                        <td>—</td>
+                        <td><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td>Cosmic Calendar</td>
+                        <td>Monthly PDF</td>
+                        <td>Personal Interactive</td>
+                    </tr>
+                    <tr>
+                        <td>Virtual Retreat Days</td>
+                        <td>—</td>
+                        <td>Quarterly</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section class="member-testimonials">
+    <div class="container">
+        <div class="section-title">
+            <h2>What Our Members Say</h2>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p class="testimonial-text">Being an Electrum member has transformed my spiritual practice. The monthly sessions and exclusive content have accelerated my growth in ways I never imagined.</p>
+                    <div class="testimonial-author">
+                        <div class="author-name">Daniel K.</div>
+                        <div class="author-title">Electrum Member, 8 months</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p class="testimonial-text">The Platinum membership pays for itself with just two sessions per month. I love having access to the meditation library and monthly group events.</p>
+                    <div class="testimonial-author">
+                        <div class="author-name">Jessica M.</div>
+                        <div class="author-title">Platinum Member, 1 year</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p class="testimonial-text">I upgraded to Electrum after 3 months and it's been worth every penny. The quarterly virtual retreats alone are worth the membership fee.</p>
+                    <div class="testimonial-author">
+                        <div class="author-name">Thomas R.</div>
+                        <div class="author-title">Electrum Member, 6 months</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="membership-faq">
+    <div class="container">
+        <div class="section-title">
+            <h2>Frequently Asked Questions</h2>
+        </div>
+        
+        <div class="accordion" id="membershipFAQ">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        How do I access member benefits after joining?
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#membershipFAQ">
+                    <div class="accordion-body">
+                        After joining, you'll receive an email with login details for your member dashboard. There, you'll find all your benefits, discount codes, and access to the libraries and community forum.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Can I upgrade or downgrade my membership?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#membershipFAQ">
+                    <div class="accordion-body">
+                        Yes, you can upgrade or downgrade your membership at any time through your member dashboard. Changes take effect at the start of your next billing cycle.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        How do I book my free 1-on-1 session with Electrum membership?
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#membershipFAQ">
+                    <div class="accordion-body">
+                        Electrum members receive a special booking code each month that can be used to schedule their free 30-minute session with any practitioner of their choice, subject to availability.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        What happens if I miss a monthly live event?
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#membershipFAQ">
+                    <div class="accordion-body">
+                        All monthly live events are recorded and added to the library within 48 hours, so you can watch them at your convenience if you can't attend live.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>METATONEHEN</h3>
+                    <p>
+                        Spiritual education and transformation through cosmic wisdom and sacred geometry.
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h3>
+                        Quick Links
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="/courses">
+                            Courses
+                        </a></li>
+                        <li><a href="/sessions">
+                            1-on-1 Sessions
+                        </a></li>
+                        <li><a href="/group-sessions">
+                            Group Sessions
+                        </a></li>
+                        <li><a href="/memberships">
+                            Memberships
+                        </a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h3>
+                        Connect
+                    </h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center mt-4">
+                    <p>
+                        
+                            &copy; 2023 METATONEHEN. All Rights Reserved.
+                        
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/page-transition.js"></script>
+    
+    
+    
+    <!-- Language Selector JS -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const languageToggle = document.getElementById('language-toggle');
+        const languageMenu = document.getElementById('language-menu');
+        
+        // Toggle language dropdown
+        languageToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (languageMenu.style.display === 'flex') {
+                languageMenu.style.display = 'none';
+                languageToggle.classList.remove('active');
+            } else {
+                languageMenu.style.display = 'flex';
+                languageToggle.classList.add('active');
+            }
+        });
+        
+        // Close dropdown when clicking elsewhere
+        document.addEventListener('click', function() {
+            languageMenu.style.display = 'none';
+            languageToggle.classList.remove('active');
+        });
+        
+        // Prevent dropdown from closing when clicking inside it
+        languageMenu.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+        
+        // Add click event for language options to prevent default behavior
+        const languageOptions = document.querySelectorAll('.language-option');
+        languageOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Mostrar un indicador visual de carga
+                this.classList.add('selecting');
+                // Permitir que continue la navegación normal
+            });
+        });
+    });
+    </script>
+    
+    
+</body>
+</html>
