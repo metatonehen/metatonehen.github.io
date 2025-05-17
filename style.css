@@ -1,0 +1,15 @@
+/*
+Theme Name: METATONEHEN
+Theme URI: https://metatonehen.com
+Author: METATONEHEN
+Author URI: https://metatonehen.com
+Description: Tema personalizado para METATONEHEN, una plataforma de educación espiritual con geometría sagrada y diseño elegante.
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: metatonehen
+Tags: education, spiritual, sacred-geometry, multilingual
+*/
+
+/* Este archivo es solo para la identificación del tema. Los estilos están en la carpeta css */
+@import url('css/styles.css');
